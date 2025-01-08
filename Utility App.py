@@ -139,23 +139,27 @@ display_menu()
 user_money = int(input("Insert Money (avg price per item is 25$): "))
 #using loop to allow user to buy multiple items
 while True:                                                                         
-    user_input = str(input("-Menu(1)--Exit(0)----Enter Item Code: ").capitalize())      
+    user_input = str(input("-Exit(0)--Menu(1)--Insert_Money(2)--Enter Item Code: ").capitalize())      
     #exit                            
     if user_input == "0":
         print(f"\n\n⚠️  Thank you for your purchase ヾ(•ω•`)o! Dispensing your change: {user_money}$. ⚠️\n")                                                 
         exit()
     #display menu
     elif user_input =="1":
-       display_menu()
-    #checks stock of item
-    elif A00[(user_input)]["stock"] == 0:
-        print(f"⚠️  The {A00[(user_input)]['name']} stock has ran out, please buy another item ⚠️\n")
-    
-    else:
-        if user_money >= A00[(user_input)]["cost"]:                                 
+       display_menu()    
+    elif user_input == "2":
+       user_money += int(input("Insert Money: "))
+       print(f"Updated Balance {user_money}")
+    elif user_input in A00:
+        #checks stock of item
+        if A00[(user_input)]["stock"] == 0:
+            print(f"⚠️  The {A00[(user_input)]['name']} stock has ran out, please buy another item ⚠️\n")
+        elif user_money >= A00[(user_input)]["cost"]:                                 
             user_money -= A00[(user_input)]["cost"]                                  
             A00[(user_input)]["stock"] -=1
             print(f"⚠️  Dispensed {A00[(user_input)]['name']} `(*>﹏<*)′. Remaining money {user_money}$ ⚠️\n")
         #money less then item cost
         else:
             print(f"⚠️  You do not have enough money for {A00[(user_input)]['name']}  ⚠️\n")
+    else:
+       print("\n⚠️  The code you entered is incorrect (┬┬﹏┬┬)  ⚠️\n")
