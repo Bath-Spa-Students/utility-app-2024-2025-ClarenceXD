@@ -149,11 +149,11 @@ while True:
        display_menu()    
     elif user_input == "2":
        user_money += int(input("Insert Money: "))
-       print(f"Updated Balance {user_money}")
+       print(f"Updated Balance: {user_money}")
     elif user_input in A00:
         #checks stock of item
         if A00[(user_input)]["stock"] == 0:
-            print(f"⚠️  The {A00[(user_input)]['name']} stock has run out, please buy another item ⚠️\n")
+            print(f"⚠️  The {A00[(user_input)]['name']} stock has ran out, please buy another item ⚠️\n")
         elif user_money >= A00[(user_input)]["cost"]:                                 
             user_money -= A00[(user_input)]["cost"]                                  
             A00[(user_input)]["stock"] -=1
